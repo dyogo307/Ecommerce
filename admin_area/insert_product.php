@@ -6,7 +6,7 @@ include("includes/db.php");
 
 ?>
 
-
+gmm,y
 <html>
 	<head>
 		<title>Inserting Product</title>
