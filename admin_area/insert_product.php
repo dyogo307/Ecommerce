@@ -2,11 +2,11 @@
 
 <?php
 
-include("includes/db.php");
+//include("includes/db.php");
+$con= mysqli_connect("localhost","root","","ecommerce")
 
 ?>
 
-gmm,y
 <html>
 	<head>
 		<title>Inserting Product</title>
@@ -63,7 +63,7 @@ gmm,y
 
 			<tr>
 				<td align="center">Product Price:</td>
-				<td><input type="number" name="product_price" required/></td>
+				<td><input type="text" name="product_price" required/></td>
 			</tr>
 
 			<tr>
@@ -89,7 +89,7 @@ gmm,y
 		echo '</script>';
 	}
 	
-	if(isset($_POST	['insert_post'])){
+	if(isset($_POST	['insert_product'])){
 		
 		$product_title = $_POST['product_title'];
 		$product_cat = $_POST['product_cat'];

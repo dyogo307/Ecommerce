@@ -80,7 +80,6 @@ float:right;
 	line-height:40px;
 
 }
-
 	
 .content_wrapper{
 width:800px;
@@ -104,16 +103,18 @@ margin:auto;
 
 #cats a {color:white;padding:15px;margin:10px; text-align:center; font-size: 18px; font-family: COMIC SANS MS; text-decoration:none}
 
-#cats a:hover {color:orange; font-weight:bolder; text-decoration:underline;}
+#cats a:hover {color:blue; font-weight:bolder; text-decoration:underline;}
 
 #products_box {
 width:700px;
 text-align:center;
-margin-left:30px;
+margin-left:50px;
 margin-bottom:10px;		
 }
 
-#single_product {float:left;margin-left:20px; padding:10px;}
+#single_product {float:left;margin-left:50px; padding:10px;}
+#single_product img { border:2px solid black;}
+
 
 #footer{
 	width:1000px;

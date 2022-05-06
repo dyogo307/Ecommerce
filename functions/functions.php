@@ -17,7 +17,7 @@ function getCats(){
 			$cat_id = $row_cats['cat_id'];
 			$cat_title = $row_cats['cat_title'];
 			
-	echo "<li><a href='#'> $cat_title</a></li>";		
+	echo "<li><a href='#'>$cat_title</a></li>";		
 	
 	}	
 }
@@ -45,12 +45,14 @@ function getPro(){
 				<h3>$pro_title</h3>
 				<img src='admin_area/product_images/$pro_image' width='180' height='180'/>
 				<p> $pro_price </p>
-				<a href='index.php'><button style='float:right'>Add to Cart</button></a>
+				<a href='details.php?pro_id=$pro_id' style='float:left; color:blue;'>Details</a>
+				<a href='index.php?pro_id=$pro_id'><button style='float:right'>Add to Cart</button></a>
 			
 			</div>
 		
 		 ";
 	}
 	}	
-
+	
+	
 ?>

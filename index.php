@@ -17,28 +17,25 @@ include("functions/functions.php");
 
 			<div class="logo">
 				<h1> kaus </h1>
-				</div>
+			</div>
 
-
-					
 			<div class="menubar">
 				<ul id="menu">
 					<li> <a href="#">Home</a></li>
 					<li> <a href="#">My Account</a></li>
 					<li> <a href="#">Sign Up</a></li>
-					<li> <a href="#">Shopping Cart</a></li>					
+					<li> <a href="cart.php">Shopping Cart</a></li>					
 				</ul>
 				<ul id ="cats">
 						
 						<?php getCats(); ?>
-
 				
 			<div/>
 			
 			
 			<div class="content_wrapper">			
 							
-				<div id="content_area">
+				<div id="content_area">			
 
 					<div id ="products_box">
 					
@@ -59,3 +56,8 @@ include("functions/functions.php");
 
 
 </body>
+
+
+
+
+
