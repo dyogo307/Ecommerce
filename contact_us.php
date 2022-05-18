@@ -1,22 +1,24 @@
+
 <!DOCTYPE html>
 <?php
+session_start();
 include("functions/functions.php");
 
 ?>
+
 <html>
 	<head>
 		<title> Kaus Store </title>
 		
-		<link rel="stylesheet" href="style.css" media="all"/>
+		<link rel="stylesheet" href="styles.css" media="all"/>
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-
 	<head/>
 
 <body>
 		<div class="main_wrapper">
 
 
-			<div class="logo">
+			<div class="logo" align="left">
 				<h1> kaus </h1>
 			</div>
 
@@ -25,64 +27,51 @@ include("functions/functions.php");
 					<li> <a href="index.php">Home</a></li>
 					<li> <a href="my_account.php">My Account</a></li>
 					<li> <a href="login.php">Sign Up</a></li>
-					<li> <a href="cart.php">Shopping Cart</a></li>					
+					<li> <a href="cart.php">Shopping Cart</a></li>		
+										
+					<?php 
+					if(!isset($_SESSION['user_email'])){
+						echo "<a href='checkout.php'>Login</a>";
+						}
+						else{
+							echo "<a href='logout.php'>Logout</a>";
+						}
+					?>	
 				</ul>
 				<ul id ="cats">
 						
 						<?php getCats(); ?>
+						
 				</ul>
-			</div>
+			<div/>
 			
-			<div class="content_wrapper">			
+			
+			<div class="content_wrapper">		
+				<?php cart();?>		
 							
-				<div id="content_area">			
+				<div id="content_area">		
+				
+					<body style="margin:0;padding:0;text-align:center;font-family:sans-serif; ">
 
-					<?php
-					if(isset($_GET['pro_id'])){
-						
-						$product_id = $_GET['pro_id'];
-						
-						$get_pro = "select * from products where product_id='$product_id'";
+	<div class="contact-title">
+			<h1> Fala Connosco</h1>
+	</div>		
 	
-	$run_pro = mysqli_query($con, $get_pro);
-	
-	while($row_pro=mysqli_fetch_array($run_pro)){
-	
-		$pro_id = $row_pro['product_id'];
-		$pro_title = $row_pro['product_title'];
-		$pro_price = $row_pro['product_price']; 
-		$pro_image = $row_pro['product_image'];
-		$pro_desc = $row_pro['product_desc'];
-	
-		
-		echo "
-			<div id='single_product'>
-			
-				<h3><b>$pro_title<b></h3>
-				<img src='admin_area/product_images/$pro_image' width='400' height='300'/>
-				<p> $pro_price </p>
-				<p> $pro_desc</p>
-				<a href='index.php' style='float:left; color:blue;'>Go Back</a>
-				<a href='index.php?pro_id=$pro_id'><button style='float:right'>Add to Cart</button></a>
-			
-			</div>
-		
-		 ";
-	}
-					}
-?>
+	<div class="contact-form" align="center">
+		<form id="contact-form" method="post" action="contact.php">
+		<input name="name" type="text" class="form-control" placeholder="Nome" required>
+		<br>
+		<input name="email" type="email" class="form-control" placeholder="Email" required><br>
+		<textarea name="message" class="form-control" placeholder="Mensagem" row="4" required></textarea><br>
+		<input type="submit" class="form-control submit" value="Envia Mensagem">
+		</form>
+		</div>
+				
 				</div>
 				
 			</div>
 
 
-			
-			<div id="footer">
-			</div>
-	</div>
-
-
-</body>
 			
 			<footer class="footer">
   	 <div class="container">
@@ -90,9 +79,9 @@ include("functions/functions.php");
   	 		<div class="footer-col">
   	 			<h4>A nossa Loja</h4>
   	 			<ul>
-  	 				<li><a href="#">sssss</a></li>
-  	 				<li><a href="#">sssss</a></li>
-  	 				<li><a href="#">sssss</a></li>
+  	 				<li><a href="#">ssss</a></li>
+  	 				<li><a href="#">ssss</a></li>
+  	 				<li><a href="#">ssss</a></li>
   	 				<li><a href="contact_us.php">Contacta-nos</a></li>
   	 			</ul>
   	 		</div>
@@ -104,7 +93,7 @@ include("functions/functions.php");
   	 			</ul>
   	 		</div>
 			<div class="footer-col">
-  	 			<h4>follow us</h4>
+  	 			<h4>Segue-nos</h4>
   	 			<div class="social-links">
   	 				<a href="https://www.facebook.com/UniversidadeLusiadaFamalicao"><i class="fab fa-facebook-f"></i></a>
   	 				<a href="https://www.instagram.com/ulusiadafam/"><i class="fab fa-instagram"></i></a>
@@ -112,10 +101,13 @@ include("functions/functions.php");
   	 			</div>
   	 		</div>
   	 	</div>
-		</div>
   </footer>
-	</html>
+			</div>
+		</div>
+	</div>	
 
 
+</body>
 
+</html>
 

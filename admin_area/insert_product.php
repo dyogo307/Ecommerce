@@ -9,7 +9,7 @@ $con= mysqli_connect("localhost","root","","ecommerce")
 
 <html>
 	<head>
-		<title>Inserting Product</title>
+		<title>Inserir Produto</title>
 	</head>
 
 <body>
@@ -19,7 +19,7 @@ $con= mysqli_connect("localhost","root","","ecommerce")
 		<table align="center" width="800" border="2">
 			
 			<tr align="center">
-				<td colspan="5"<h2>Insert New Product Here</h2></td>
+				<td colspan="5"<h2>Insere novo produto aqui!</h2></td>
 			</tr>
 			
 			<tr>
@@ -76,7 +76,7 @@ $con= mysqli_connect("localhost","root","","ecommerce")
 			</tr>			
 		</table>
 
-
+</form>
 
 </body>
 </html>	
