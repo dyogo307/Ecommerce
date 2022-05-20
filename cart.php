@@ -3,7 +3,23 @@
 include("functions/functions.php");
 
 session_start();
+
+if (isset($_GET['remove_product'])) {
+    removeProductFromCart($_GET['remove_product']);
+
+    header('location: ./cart.php');
+    exit();
+}
+
+if (isset($_POST['update_cart'])) {
+    updateProductsQuantities($_POST['quantities'] ?? []);
+
+    header('location: ./cart.php');
+    exit();
+}
 ?>
+
+
 
 <html>
 	<head>
@@ -17,51 +33,67 @@ session_start();
 		<div class="main_wrapper">
 
 
-			<div class="logo">
-				<h1> kaus </h1>
-			</div>
+            <div class="logo">
+                <h1> kaus </h1>
+            </div>
 
-			<div class="menubar">
-				<ul id="menu">
-					<li> <a href="index.php">Home</a></li>
-					<li> <a href="my_account.php">My Account</a></li>
-					<li> <a href="#">Sign Up</a></li>
-					<li> <a href="cart.php">Shopping Cart</a></li>
-					<?php 
-					if(!isset($_SESSION['user_email'])){
-						echo "<a href='checkout.php'>Login</a>";
-						}
-						else{
-							echo "<a href='logout.php'>Logout</a>";
-						}
-					?>						
-				
-				</ul>
-				<ul id ="cats">
-						
-						<?php getCats(); ?>
-				
-			<div/>
-			</div>
+            <div class="menubar">
+                <ul id="menu">
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="my_account.php">My Account</a></li>
+                    <li><a href="#">Sign Up</a></li>
+                    <li><a href="cart.php">Shopping Cart</a></li>
+                    <?php
+                    if (!isset($_SESSION['user_email'])) {
+                        echo "<a href='checkout.php'>Login</a>";
+                    } else {
+                        echo "<a href='logout.php'>Logout</a>";
+                    }
+                    ?>
+
+                </ul>
+
+                <ul id="cats">
+                    <?php getCats(); ?>
+                    <ul/>
+            </div>
 			
 			
-			<div class="content_wrapper">			
-							
-				<div id="content_area">			
+			<div class="content_wrapper">
 
-					<div id ="products_box">
-					<br>
-					<form action="" method="post" enctype="multipart/form-data">
-					
-					<table align="center" width="700" 
-						
-						<tr align="center" style="margin-top:100px; margin-left:100px">
-							<th>Remover</th>
-							<th>Produtos</th>
-							<th>Quantidade</th>
-							<th>Preço</th>
-						</tr>
-						<?php	
+                <div id="content_area">
+
+                    <div id="products_box">
+                        <br>
+                        <form action="" method="post">
+                            <table>
+                                <tr align="center" style="margin-top:100px; margin-left:100px">
+                                    <th>Remover</th>
+                                    <th>Produtos</th>
+                                    <th>Quantidade</th>
+                                    <th>Preço</th>
+                                </tr>
+								
+								 <?php foreach (getCartProducts() as $product) { ?>
+                                    <tr>
+									<td>
+                                        <input type="submit" value="remover" value="<?= removeProductFromCart('product_id');?>">
+                                        </td>
+                                        <td><img src="admin_area/product_images[<?= $product['product_image'] ?>]"</td>
+                                        <td>
+                                            <input type="number" name="quantities[<?= $product['product_id'] ?>]" min="1" value="<?= $product['quantity'] ?>">
+                                        </td>
+                                        <td><?= $product['product_price'] ?></td>
+                                    </tr>
+                                <?php } ?>
+								
+								
+								
+								
+								
+								
+								
+	<?php	
 		$total = 0;
 		global $con;
 		$ip =getIp();

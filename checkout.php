@@ -10,7 +10,9 @@ include("functions/functions.php");
 	<head>
 		<title> Kaus Store </title>
 		
-		<link rel="stylesheet" href="style.css" media="all"/>
+		<link rel="stylesheet" href="styles/style.css" media="all"/>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+		
 	<head/> 
 
 <body>
@@ -32,7 +34,7 @@ include("functions/functions.php");
 						
 						<?php getCats(); ?>
 				</ul>
-			<div/>
+			</div>
 			
 			
 			<div class="content_wrapper">			
@@ -40,20 +42,21 @@ include("functions/functions.php");
 				<div id="content_area" margin-top="500px">			
 
 					<?php
-					if (!isset($_SESSION['user_email'])){
+					/*if (!isset($_SESSION['user_email'])){
 						include("login.php");
 					}
 					else{
 						include("payment.php");
-					}
+					}*/
 					?>
 
 				
 				</div>
 				
 			</div>
-
+				</div>
 </body>
+			
 			
 			<footer class="footer" style="margin-top:400px;">
   	 <div class="container">
@@ -84,7 +87,7 @@ include("functions/functions.php");
   	 		</div>
   	 	</div>
   </footer>
-	</html>
+</html>
 
 
 

@@ -1,16 +1,22 @@
-<!DOCTYPE html>
 <?php
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
 include("functions/functions.php");
 
+if (isset($_GET['add_cart'])) {
+    addToCart($_GET['add_cart']);
+}
 ?>
+<!DOCTYPE html>
 
-<html>
+<html lang="pt">
 	<head>
-		<title> Kaus Store </title>
-		
-		<link rel="stylesheet" href="style.css" media="all"/>
-		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<meta charset="utf-8">
+		<title> Kaus Store </title>		
+		<link rel="stylesheet" href="styles/style.css" media="all"/>
+		<link rel="stylesheet" type="text/css" 
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<head/>
 
 <body>
@@ -23,18 +29,16 @@ include("functions/functions.php");
 			<div class="menubar">
 				<ul id="menu">
 					<li> <a href="home.php">Home</a></li>
+					<?php if (isset($_SESSION['user_email'])) { ?>
 					<li> <a href="my_account.php">My Account</a></li>
-					<li> <a href="login.php">Sign Up</a></li>
+					<?php } ?>
 					<li> <a href="cart.php">Shopping Cart</a></li>		
-										
-					<?php 
-					if(!isset($_SESSION['user_email'])){
-						echo "<a href='checkout.php'>Login</a>";
-						}
-						else{
-							echo "<a href='logout.php'>Logout</a>";
-						}
-					?>	
+				 <?php if (!isset($_SESSION['user_email'])) { ?>
+					<li> <a href="register.php">Sign Up</a></li>
+					<li><a href='login.php'>Login</a></li>
+                    <?php } else { ?>
+                        <li><a href='logout.php'>Logout</a></li>
+                    <?php } ?>
 				</ul>
 				<ul id ="cats">
 						
@@ -56,11 +60,7 @@ include("functions/functions.php");
 				
 				</div>
 				
-			</div>
-			
-			
-	
-			
+			</div>			
 
 </body>
 			

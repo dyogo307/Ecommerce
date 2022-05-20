@@ -40,7 +40,8 @@ include("functions/functions.php");
 						
 				</ul>
 			<div/>
-
+			</div>
+</div>
 <div>
 
 	<form method="post" action="post">
@@ -79,7 +80,7 @@ if(isset($_POST['login'])){
 		exit();
 }
 	$ip=getIp();
-	$sell_cart ="select * from cart where ip_add=$'ip'";
+	$sell_cart ="select * from cart where ip_add='$ip'";
 	$run_cart=mysqli_query($con, $sell_cart);
 	$check_cart= mysqli_num_rows($run_cart);
 	
@@ -96,6 +97,45 @@ if(isset($_POST['login'])){
 		echo "<script>window.open('checkout.php','_self')</script>";
 	}
 }
+
+
+
+/*if(isset($_POST['login'])){
+	$email=mysqli_real_escape_string($ecommerce,$_POST['email']);
+	$pass=mysqli_real_escape_string($ecommerce,$_POST['pass']);
+	$pass = md5($pass);
+
+	$sel_u= "SELECT * FROM users WHERE  user_email='$email' AND user_pass='$pass'";
+	$run_u= mysqli_query($ecommerce,$sel_u);
+	$check_user = mysqli_num_rows($run_u);
+	
+	/*if($check_user==0){
+		echo"<script>alert('Palavra-passe ou email incorreto')</script>";
+		exit();*/
+		/*if (mysqli_num_rows($run_u) == 1) {
+  	  $_SESSION['username'] = $username;
+  	  $_SESSION['success'] = "You are now logged in";
+  	  header('location: index.php');
+	  exit();
+		}
+	/*$ip=getIp();
+	$sell_cart ="select * from cart where ip_add=$'ip'";
+	$run_cart=mysqli_query($con, $sell_cart);
+	$check_cart= mysqli_num_rows($run_cart);
+	
+	if($check_user>0 AND $check_cart==0){
+		$_SESSION['user_email']=$email;
+		
+		echo "<script>alert('Login bem sucedido')</script>";
+		echo "<script>window.open('my_account.php','_self')</script>";
+	}
+	else{
+		$_SESSION['user_email']=$email;
+		
+		echo "<script>alert('Login bem sucedido')</script>";
+		echo "<script>window.open('checkout.php','_self')</script>";
+	}
+}*/
 ?>
 </body>
 			
@@ -128,4 +168,4 @@ if(isset($_POST['login'])){
   	 		</div>
   	 	</div>
   </footer>
-	</html>
+</html>

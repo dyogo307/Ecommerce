@@ -9,7 +9,7 @@ include("functions/functions.php");
 	<head>
 		<title> Kaus Store </title>
 		
-		<link rel="stylesheet" href="style.css" media="all"/>
+		<link rel="stylesheet" href="styles/style.css" media="all"/>
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<head/>
 
@@ -45,31 +45,30 @@ include("functions/functions.php");
 			</div>
 			</div>
 			<div class="back" align="left">
-				<div class="container">
+				<div class="container-1">
 				<div class="col-1">
 					<img src="images/fundo.jpg" class ="back-img" align="center";
 				</div>	
 				</div>
 			</div>
-			<div class="container">
+			<div class="container-1">
 				<h2 class="title" >Destaques</h2>
 				<div class="col">
 				<?php getPro1();?>
 				</div>
 			</div>
 			<div class="offer" align="left">
-				<div class="container">
+				<div class="container-1">
 				<div class="col-1">
 					<img src="images/kaws.jpg" class ="offer-img" align="center";
 				</div>	
 				</div>
 			</div>
-			</div>
 		
 
 </body>
 			
-			<footer class="footer" style="margin-top: 1000px;">
+			<footer class="footer">
   	 <div class="container">
   	 	<div class="row">
   	 		<div class="footer-col">
