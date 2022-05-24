@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 $con = mysqli_connect("localhost","root","","ecommerce");
 
@@ -22,7 +22,7 @@ function getIp()
 
 function getCart()
 {
-   return unserialize($_COOKIE['cart'] ?? []);
+    return unserialize($_COOKIE['cart'] ?? []);
 }
 
 function removeProductFromCart($productId)
@@ -168,25 +168,23 @@ function getCats()
 
 function getPro()
 {
+    global $con;
 
-    if (!isset($_GET['cat'])) {
+    $categoryId = $_GET['cat'] ?? '%';
 
-        global $con;
+    $get_pro = "select * from products where product_cat LIKE '$categoryId'";
 
-        $get_pro = "select * from products order by RAND() LIMIT 0,6";
+    $run_pro = mysqli_query($con, $get_pro);
 
-        $run_pro = mysqli_query($con, $get_pro);
+    while ($row_pro = mysqli_fetch_array($run_pro)) {
 
-        while ($row_pro = mysqli_fetch_array($run_pro)) {
-
-            $pro_id    = $row_pro['product_id'];
-            $pro_cat   = $row_pro['product_cat'];
-            $pro_title = $row_pro['product_title'];
-            $pro_price = $row_pro['product_price'];
-            $pro_image = $row_pro['product_image'];
+        $pro_id    = $row_pro['product_id'];
+        $pro_title = $row_pro['product_title'];
+        $pro_price = $row_pro['product_price'];
+        $pro_image = $row_pro['product_image'];
 
 
-            echo "
+        echo "
 			<div id='single_product'>
 			
 				<h3><b>$pro_title<b></h3>
@@ -195,84 +193,8 @@ function getPro()
 				<a href='details.php?pro_id=$pro_id' style='float:left; color:black; text-decoration:none; font-size: 15px;'>ver produto</a>
 				<a href='index.php?add_cart=$pro_id'><button style='float:right; border-radius: 12px; background-color: #4CAF50; border: 1px solid green;'>Adicionar ao carrinho</button></a>			
 			</div> ";
-        }
     }
-
 }
-
-function getPro1()
-{
-
-    if (!isset($_GET['cat'])) {
-
-        global $con;
-
-        $get_pro = "select * from products order by RAND() LIMIT 0,3";
-
-        $run_pro = mysqli_query($con, $get_pro);
-
-        while ($row_pro = mysqli_fetch_array($run_pro)) {
-
-            $pro_id    = $row_pro['product_id'];
-            $pro_cat   = $row_pro['product_cat'];
-            $pro_title = $row_pro['product_title'];
-            $pro_price = $row_pro['product_price'];
-            $pro_image = $row_pro['product_image'];
-
-
-            echo "
-			<div id='single_product'>
-			
-				<h3>$pro_title</h3>
-				<img src='admin_area/product_images/$pro_image' width='180' height='180'/>
-				<p> $pro_price </p>
-				<a href='details.php?pro_id=$pro_id' style='float:left; color:black; text-decoration:none;'>ver produto</a>
-				<a href='index.php?add_cart=$pro_id'><button style='float:right; border-radius: 12px; background-color: #4CAF50; border: 1px solid green;'>Adicionar ao carrinho</button></a>			
-			</div> ";
-        }
-    }
-
-}
-
-function getCatPro()
-{
-
-    if (isset($_GET['cat'])) {
-
-        $cat_id = $_GET['cat'];
-
-        global $con;
-
-        $get_cat_pro = "select*from products where product_cat='$cat_id'";
-
-        $run_cat_pro = mysqli_query($con, $get_cat_pro);
-
-        while ($row_cat_pro = mysqli_fetch_array($run_cat_pro)) {
-
-            $pro_id    = $row_cat_pro['product_id'];
-            $pro_cat   = $row_cat_pro['product_cat'];
-            $pro_title = $row_cat_pro['product_title'];
-            $pro_price = $row_cat_pro['product_price'];
-            $pro_image = $row_cat_pro['product_image'];
-
-
-            echo "
-			<div id='single_product'>
-			
-				<h3>$pro_title</h3>
-				<img src='admin_area/product_images/$pro_image' width='180' height='180'/>
-				<p> Preço: $pro_price </p>
-				<a href='details.php?pro_id=$pro_id' style='float:left; color:black; text-decoration:none;'>ver produto</a>
-				<a href='index.php?pro_id=$pro_id'><button style='float:right; border-radius: 12px; background-color: #4CAF50; border: 1px solid green;'>Adicionar ao carrinho</button></a>
-			
-			</div>
-		
-		 ";
-        }
-    }
-
-}
-
 ?>
 
 
