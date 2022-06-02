@@ -161,7 +161,8 @@ function getCats()
         $cat_id    = $row_cats['cat_id'];
         $cat_title = $row_cats['cat_title'];
 
-        echo "<li><a href='index.php?cat=$cat_id'>$cat_title</a></li>";
+
+        echo '<li><a href="index.php?cat=' . $cat_id . '">' . $cat_title . '</a></li>';
 
     }
 }

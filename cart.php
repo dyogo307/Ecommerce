@@ -57,10 +57,10 @@ if (isset($_POST['update_cart'])) {
                                 ?>
                                     <tr>
                                         <td>
-                                            <a href="./cart.php?remove_product=<?= $product['product_id']; ?>">Remover</a>
+                                            <a href="./cart.php?remove_product=<?= $product['product_id']; ?>" style="text-decoration:none; color:red;" align="center";>Remover </a>
                                         </td>
                                         <td>
-                                            <img src="admin_area/product_images/<?= $product['product_image']; ?>" width='180' height='180'>
+                                            <img src="admin_area/product_images/<?= $product['product_image']; ?>" width='100' height='100'>
                                         </td>
                                         <td>
                                             <input type="number" name="quantities[<?= $product['product_id'] ?>]"

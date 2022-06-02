@@ -2,145 +2,109 @@
 include("includes/db.php");
 include("functions/functions.php");
 
+session_start();
+
+if (isset($_SESSION['user'])) {
+    header('location: ./index.php');
+    exit;
+}
+
 // Login do utilizador
 if (isset($_POST['login'])) {
     // Parâmetros do formulário
     $email    = $_POST['email'];
     $password = $_POST['password'];
 
-    // Obter utilizador da BD
-    $sqlUser    = mysqli_query("SELECT * FROM users WHERE user_email = '$email' AND user_pass = '$password' LIMIT 0, 1");
-    $resultUser = mysqli_fetch_array($sqlUser);
+    // Validar dados de entrada
+    $errors = [];
+    if (empty($email)) {
+        $errors[] = 'Preencha o email';
+    }
+    if (empty($password)) {
+        $errors[] = 'Preencha a password';
+    }
 
-    // Em caso de sucesso, redirecionar o utilizador para...
+    if (!empty($errors)) {
+        setcookie('login_errors', serialize($errors), time() + 10);
+
+        header('Location: ' . $_SERVER['PHP_SELF'] . '?fail=validation');
+
+        exit;
+    }
+
+    // Obter utilizador da BD
+    $sqlUser    = "SELECT * FROM users WHERE user_email = '$email' AND user_pass = '" . sha1($password) . "' LIMIT 0, 1";
+    $resultUser = mysqli_query($con, $sqlUser);
+    $user       = mysqli_fetch_assoc($resultUser);
+
+    // Se encontrarmos o utilizador, fazemos login
+    if ($user !== null) {
+        $_SESSION['user'] = $user;
+
+        header('Location: ./index.php');
+        exit;
+    } else {
+        header('Location: ' . $_SERVER['PHP_SELF'] . '?fail=no_user');
+        exit;
+    }
 }
 ?>
-<html>
+<!doctype html>
+<html lang="pt">
     <head>
-        <title> Kaus Store </title>
+        <title>Kaus Store - Login</title>
 
-        <link rel="stylesheet" href="style.css" media="all"/>
-        <link rel="stylesheet" type="text/css"
-              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+        <?php include('./views/structure/head.php'); ?>
+		<?php include('./views/navbar.php'); ?>
+		
+
         <head/>
 
     <body>
-        <div class="main_wrapper">
+        
 
-            <div class="logo">
-                <h1> kaus </h1>
-            </div>
-
-            <div class="menubar">
-                <ul id="menu">
-                    <li><a href="home.php">Home</a></li>
-                    <li><a href="my_account.php">My Account</a></li>
-                    <li><a href="login.php">Sign Up</a></li>
-                    <li><a href="cart.php">Shopping Cart</a></li>
-
-                    <?php
-                    if (!isset($_SESSION['user_email'])) {
-                        echo "<a href='checkout.php'>Login</a>";
-                    } else {
-                        echo "<a href='logout.php'>Logout</a>";
-                    }
-                    ?>
-                </ul>
-                <ul id="cats">
-
-                    <?php getCats(); ?>
-
-                </ul>
-                <div/>
-            </div>
-        </div>
-
-        <div>
+        <div class="container py-5 mt-5 mb-5">
             <form method="post">
-                <table width="500" align="center" border="5" style="margin-top:100px; margin-left:300px">
+                <?php
+                if (isset($_GET['fail'])) {
+                    if ($_GET['fail'] === 'no_user') {
+                        echo '<p class="alert alert-danger">Utilizador não encontrado!</p>';
+                    }
 
-                    <tr>
-                        <td align="center">Email:</td>
-                        <td><input type="text" name="email" placeholder="insere email" required/></td>
-                    </tr>
+                    if ($_GET['fail'] === 'validation') {
+                        $errors = unserialize($_COOKIE['login_errors'] ?? []);
 
-                    <tr>
-                        <td align="center">Password:</td>
-                        <td><input type="password" name="password" placeholder="insere password" required/></td>
-                    </tr>
+                        echo '<p>Validação falhou!</p>';
+                        echo '<ul>';
 
+                        foreach ($errors as $error) {
+                            echo '<li>' . $error . '</li>';
+                        }
 
-                    <tr align="center">
-                        <td colspan="4"><input type="submit" name="login" placeholder="Login"/></td>
-                    </tr>
-                </table>
-                <h2 style="float:right; padding:5px;"><a href="register.php" style="text-decoration:none; color:black;">Regista-te
-                        Aqui</a></h2>
+                        echo '</ul>';
+                    }
+                }
+                ?>
+            </form>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" class="form-control" name="email" id="email" required>
+                </div>
 
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" id="password" required>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between">
+                    <button type="submit" class="btn btn-primary" name="login">Login</button>
+
+                    <a href="register.php" style="text-decoration:none; color:black;">Regista-te Aqui</a>
+                </div>
         </div>
-
-        <?php
-        if (isset($_POST['login'])) {
-            $email      = $_POST['email'];
-            $pass       = $_POST['pass'];
-            $sel_u      = "select * from users where user_email='$email' AND user_pass='$pass'";
-            $run_u      = mysqli_query($con, $sel_u);
-            $check_user = mysqli_num_rows($run_u);
-
-            if ($check_user == 0) {
-                echo "<script>alert('Palavra-passe ou email incorreto')</script>";
-                exit();
-            }
-            $ip         = getIp();
-            $sell_cart  = "select * from cart where ip_add='$ip'";
-            $run_cart   = mysqli_query($con, $sell_cart);
-            $check_cart = mysqli_num_rows($run_cart);
-
-            if ($check_user > 0 AND $check_cart == 0) {
-                $_SESSION['user_email'] = $email;
-
-                echo "<script>alert('Login bem sucedido')</script>";
-                echo "<script>window.open('my_account.php','_self')</script>";
-            } else {
-                $_SESSION['user_email'] = $email;
-
-                echo "<script>alert('Login bem sucedido')</script>";
-                echo "<script>window.open('checkout.php','_self')</script>";
-            }
-        }
-
-
-        ?>
+<footer>
+        <?php include('./views/footer.php'); ?>
+</footer>
+        <?php include('./views/structure/scripts.php'); ?>
     </body>
-
-    <footer class="footer" style="margin-top:400px;">
-        <div class="container">
-            <div class="row">
-                <div class="footer-col">
-                    <h4>A nossa Loja</h4>
-                    <ul>
-                        <li><a href="#">sssss</a></li>
-                        <li><a href="#">sssss</a></li>
-                        <li><a href="#">sssss</a></li>
-                        <li><a href="contact_us.php">Contacta-nos</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Loja Online</h4>
-                    <ul>
-                        <li><a href="index.php">Home</a></li>
-                        <?php getCats(); ?>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>follow us</h4>
-                    <div class="social-links">
-                        <a href="https://www.facebook.com/UniversidadeLusiadaFamalicao"><i
-                                    class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/ulusiadafam/"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/in/diogo-cunha-105940220/"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-            </div>
-    </footer>
 </html>

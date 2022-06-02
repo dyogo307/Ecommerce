@@ -1,8 +1,13 @@
 <?php
 
 session_start();
+
+unset($_SESSION['user']);
+
 session_destroy();
 
-echo "<script>window.open('index.php','_self')</script>";
+header('Location: ' . $_SERVER['HTTP_REFERER']);
+
+exit;
 
 ?>

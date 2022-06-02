@@ -103,7 +103,7 @@ if(isset($_POST['register'])){
 	
 	$ip=getIP();
 	$email= $_POST['email'];
-	$pass= $_POST['pass'];
+	$pass= sha1($_POST['pass']);
 	$name= $_POST['name'];
 	$city= $_POST['city'];
 	$contact= $_POST['contact'];
