@@ -24,7 +24,7 @@ include("includes/db.php");
 			<div class="menubar">
 				<ul id="menu">
 					<li> <a href="index.php">Home</a></li>
-					<li> <a href="my_account.php">My Account</a></li>
+					<li> <a href="profile.php">My Account</a></li>
 					<li> <a href="#">Sign Up</a></li>
 					<li> <a href="cart.php">Shopping Cart</a></li>					
 				</ul>

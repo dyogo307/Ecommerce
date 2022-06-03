@@ -1,4 +1,4 @@
- <?php
+<?php
 
 $con = mysqli_connect("localhost","root","","ecommerce");
 
@@ -162,18 +162,17 @@ function getCats()
         $cat_title = $row_cats['cat_title'];
 
 
-        echo '<li><a href="index.php?cat=' . $cat_id . '">' . $cat_title . '</a></li>';
-
+        echo '<li class="nav-item"><a class="nav-link" href="index.php?cat=' . $cat_id . '">' . $cat_title . '</a></li>';
     }
 }
 
-function getPro()
+function getPro($highlight = '%')
 {
     global $con;
 
     $categoryId = $_GET['cat'] ?? '%';
 
-    $get_pro = "select * from products where product_cat LIKE '$categoryId'";
+    $get_pro = "select * from products where product_cat LIKE '$categoryId' AND highlight LIKE '$highlight'";
 
     $run_pro = mysqli_query($con, $get_pro);
 
@@ -185,17 +184,30 @@ function getPro()
         $pro_image = $row_pro['product_image'];
 
 
-        echo "
-			<div id='single_product'>
-			
-				<h3><b>$pro_title<b></h3>
-				<img src='admin_area/product_images/$pro_image' width='180' height='180'/>
-				<p> $pro_price </p>
-				<a href='details.php?pro_id=$pro_id' style='float:left; color:black; text-decoration:none; font-size: 15px;'>ver produto</a>
-				<a href='index.php?add_cart=$pro_id'><button style='float:right; border-radius: 12px; background-color: #4CAF50; border: 1px solid green;'>Adicionar ao carrinho</button></a>			
-			</div> ";
+        echo '
+            <div class="col-md-6 col-lg-4">
+                <div class="mb-3 mb-md-4 mb-lg-5">
+                    <h3>' . $pro_title . '</h3>
+                    
+                    <div class="mb-3">
+                        <img class="img-thumbnail" src="admin_area/product_images/' . $pro_image . '">
+                    </div>
+                    
+                    <p class="lead">' . $pro_price . '€</p>
+                    
+                    
+                    <a class="btn btn-primary btn-sm" href="details.php?pro_id=' . $pro_id . '">
+                        <i class="fas fa-eye"></i> Ver produto
+                    </a>
+                    
+                    <a class="btn btn-secondary btn-sm" href="index.php?add_cart=' . $pro_id . '">
+                        <i class="fas fa-cart-plus"></i> Adicionar ao carrinho
+                    </a>
+                </div>			
+            </div>';
     }
 }
+
 ?>
 
 

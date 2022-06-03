@@ -85,7 +85,6 @@ if (isset($_POST['login'])) {
                     }
                 }
                 ?>
-            </form>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email:</label>
                     <input type="email" class="form-control" name="email" id="email" required>
@@ -101,6 +100,7 @@ if (isset($_POST['login'])) {
 
                     <a href="register.php" style="text-decoration:none; color:black;">Regista-te Aqui</a>
                 </div>
+            </form>
         </div>
 <footer>
         <?php include('./views/footer.php'); ?>

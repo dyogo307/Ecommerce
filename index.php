@@ -13,33 +13,21 @@ if (isset($_GET['add_cart'])) {
 <!DOCTYPE html>
 <html lang="pt">
     <head>
-        <title> Kaus Store </title>
-		        <link rel="stylesheet" href="styles/style.css" media="all"/>
-        <link rel="stylesheet" type="text/css">
-			<?php include('./views/structure/head.php'); ?>
-			
-			<?php include('./views/navbar.php'); ?>
-
+        <title>Kaus Store</title>
+        <?php include('./views/structure/head.php'); ?>
     </head>
 
     <body>
+        <?php include('./views/navbar.php'); ?>
 
-	<div class="content_wrapper">
+        <div class="container my-5">
+            <div class="row">
+                <?php getPro(); ?>
+            </div>
+        </div>
 
-                <div id="content_area">
-
-                    <div id="products_box">
-                        <?php getPro(); ?>
-                    </div>
-                </div>
-    </div>
-        
-      
-
-          <?php include('./views/footer.php'); ?>
+        <?php include('./views/footer.php'); ?>
 
         <?php include('./views/structure/scripts.php'); ?>
- </div>
-
- </body>
+    </body>
 </html>
