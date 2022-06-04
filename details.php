@@ -14,7 +14,7 @@ include("includes/db.php");
         <?php include('./views/navbar.php'); ?>
 
         <div class="container my-5">
-            <h2 class="mb-4">Título da página</h2>
+            <h2 class="mb-4">Detalhes de Produto</h2>
 
             <?php
             if(isset($_GET['pro_id'])){
@@ -33,20 +33,31 @@ include("includes/db.php");
                     $pro_image = $row_pro['product_image'];
                     $pro_desc = $row_pro['product_desc'];
 
-
-                    echo "
-			<div id='single_product'>
+			echo '
+            <div class="col-md-6 col-lg-4">
+                <div class="mb-3 mb-md-4 mb-lg-5">
+                    <h3>' . $pro_title . '</h3>
+                    
+                    <div class="mb-3">
+                        <img class="img-thumbnail" src="admin_area/product_images/' . $pro_image . '">
+                    </div>
+                    
+                    <p class="lead">' . $pro_price . '€</p>
+                    
+                    
+                    <a class="btn btn-primary btn-sm" href="details.php?pro_id=' . $pro_id . '">
+                        <i class="fas fa-eye"></i> Ver produto
+                    </a>
+                    
+                    <a class="btn btn-secondary btn-sm" href="index.php?add_cart=' . $pro_id . '">
+                        <i class="fas fa-cart-plus"></i> Adicionar ao carrinho
+                    </a>
+                </div>			
+            </div>';
+	
 			
-				<h3><b>$pro_title<b></h3>
-				<img src='admin_area/product_images/$pro_image' width='400' height='300'/>
-				<p> $pro_price </p>
-				<p> $pro_desc</p>
-				<a href='index.php' style='float:left; color:blue;'>Go Back</a>
-				<a href='index.php?pro_id=$pro_id'><button style='float:right'>Add to Cart</button></a>
-			
-			</div>
 		
-		 ";
+                   
                 }
             }
             ?>

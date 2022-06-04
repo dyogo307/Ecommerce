@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 include("functions/functions.php");
 
@@ -22,43 +21,37 @@ if (isset($_POST['update_cart'])) {
 <html lang="pt">
     <head>
         <title> Kaus Store </title>
-
+        <?php include('./views/structure/head.php'); ?>
         <link rel="stylesheet" href="style.css" media="all"/>
         <link rel="stylesheet" type="text/css"
               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
         <head/>
 
     <body>
-        <div class="main_wrapper">
-            <div class="logo">
-                <h1> kaus </h1>
-            </div>
-
-            <?php include('./views/main-menu.php'); ?>
-
-            <div class="content_wrapper">
-                <div id="content_area">
-                    <div id="products_box">
-                        <br>
-                        <form action="" method="post">
-                            <table>
-                                <tr align="center" style="margin-top:100px; margin-left:100px">
-                                    <th>Remover</th>
-                                    <th>Produtos</th>
-                                    <th>Quantidade</th>
-                                    <th>Preço</th>
-                                </tr>
-
+        <?php include('./views/navbar.php'); ?>	
+		
+		
+		<div class="container mt-5  p-5">
+        <div class="row">
+            <aside class="col-lg-9">
+                <div class="card">
+                    <div class="table-responsive">
+                        <table class="table table-borderless table-shopping-cart">
+                            <thead class="text-muted">
+                                <tr class="small text-uppercase">
+                                    <th scope="col">Produtos</th>
+                                    <th scope="col" >Quantidade</th>
+                                    <th scope="col" >Preço</th>
+                                    <th scope="col" class="text-right d-none d-md-block" width="200"></th>
+							   </tr>									
+                            <tbody>
                                 <?php
                                     $total = 0;
 
                                     foreach (getCartProducts() as $product) {
                                         $total += $product['quantity'] * $product['product_price'];
                                 ?>
-                                    <tr>
-                                        <td>
-                                            <a href="./cart.php?remove_product=<?= $product['product_id']; ?>" style="text-decoration:none; color:red;" align="center";>Remover </a>
-                                        </td>
+										<tr>
                                         <td>
                                             <img src="admin_area/product_images/<?= $product['product_image']; ?>" width='100' height='100'>
                                         </td>
@@ -67,27 +60,38 @@ if (isset($_POST['update_cart'])) {
                                                    min="1" value="<?= $product['quantity'] ?>">
                                         </td>
                                         <td><?= $product['product_price'] ?></td>
+										
+                                        <td>
+                                            <a href="./cart.php?remove_product=<?= $product['product_id']; ?>" style="text-decoration:none; color:red;" align="center";>Remover </a>
+                                        </td>
+
                                     </tr>
-                                <?php } ?>
+								<?php } ?>
+                            </thead>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </aside>
+            <aside class="col-lg-3">
 
-                                <tr>
-                                    <td colspan="3"> Total</td>
-                                    <td><?php echo $total; ?></td>
-                                </tr>
-
-                                <tr align="center">
-                                    <td><input type="submit" name="update_cart" value="Update Cart"/></td>
-                                    <td><input type="submit" name="continue" value="Continue Shopping"/></td>
-                                    <td>
-                                        <button><a href="checkout.php" style="text-decoration:none; color:black;">Checkout</a>
-                                        </button>
-                                    </td>
-                                </tr>
-
-                            </table>
-                        </form>
-
-                        <?php
+                <div class="card">
+                    <div class="card-body">
+                        <dl class="dlist-align">
+                            <dt>Preço Total</dt>
+                            <dd class="text-right ml-3">$<?php echo $total; ?></dd>
+                        </dl>
+				
+                        <hr> <button type="submit" class="btn btn-primary" name="updatecart">Atualizar Carrinho</button> <a href="#" class="btn btn-out btn-success btn-square btn-main " data-abc="true">Pagamento</a>
+                    </div>
+                </div>
+				
+            </aside>
+			
+        </div>
+		
+    </div>
+						<?php
                         function updatecart()
                         {
                             global $con;
@@ -110,44 +114,11 @@ if (isset($_POST['update_cart'])) {
                         }
 
                         ?>
+		
 
+        <?php include('./views/footer.php'); ?>
 
-                    </div>
-                </div>
-            </div>
-
-
+        <?php include('./views/structure/scripts.php'); ?>
     </body>
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="footer-col">
-                    <h4>A nossa Loja</h4>
-                    <ul>
-                        <li><a href="#">sssss</a></li>
-                        <li><a href="#">sssss</a></li>
-                        <li><a href="#">sssss</a></li>
-                        <li><a href="contact_us.php">Contacta-nos</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Loja Online</h4>
-                    <ul>
-                        <li><a href="index.php">Home</a></li>
-                        <?php getCats(); ?>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>follow us</h4>
-                    <div class="social-links">
-                        <a href="https://www.facebook.com/UniversidadeLusiadaFamalicao"><i
-                                    class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/ulusiadafam/"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/in/diogo-cunha-105940220/"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-            </div>
-    </footer>
-
 
 </html>
