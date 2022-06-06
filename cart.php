@@ -22,10 +22,7 @@ if (isset($_POST['update_cart'])) {
     <head>
         <title> Kaus Store </title>
         <?php include('./views/structure/head.php'); ?>
-        <link rel="stylesheet" href="style.css" media="all"/>
-        <link rel="stylesheet" type="text/css"
-              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-        <head/>
+    <head/>
 
     <body>
         <?php include('./views/navbar.php'); ?>	
@@ -82,7 +79,7 @@ if (isset($_POST['update_cart'])) {
                             <dd class="text-right ml-3">$<?php echo $total; ?></dd>
                         </dl>
 				
-                        <hr> <button type="submit" class="btn btn-primary" name="updatecart">Atualizar Carrinho</button> <a href="#" class="btn btn-out btn-success btn-square btn-main " data-abc="true">Pagamento</a>
+                        <hr> <button type="submit" class="btn btn-primary" name="updatecart">Atualizar Carrinho</button> <a href="payment.php" class="btn btn-out btn-success btn-square btn-main " data-abc="true">Pagamento</a>
                     </div>
                 </div>
 				

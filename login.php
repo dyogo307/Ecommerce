@@ -33,8 +33,11 @@ if (isset($_POST['login'])) {
     }
 
     // Obter utilizador da BD
-    $sqlUser    = "SELECT * FROM users WHERE user_email = '$email' AND user_pass = '" . sha1($password) . "' LIMIT 0, 1";
-    $resultUser = mysqli_query($con, $sqlUser);
+	
+    $sqlUser    = "SELECT * FROM users WHERE user_email = 
+	'$email' AND user_pass = '" . sha1($password) . "' LIMIT 0, 1";
+    
+	$resultUser = mysqli_query($con, $sqlUser);
     $user       = mysqli_fetch_assoc($resultUser);
 
     // Se encontrarmos o utilizador, fazemos login
