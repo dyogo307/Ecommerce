@@ -9,7 +9,7 @@ if (isset($_GET['remove_product'])) {
     header('location: ./cart.php');
     exit();
 }
-
+ 
 if (isset($_POST['update_cart'])) {
     updateProductsQuantities($_POST['quantities'] ?? []);
 
