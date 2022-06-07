@@ -61,7 +61,7 @@ if (isset($_POST['login'])) {
 		<?php include('./views/navbar.php'); ?>
 		
 
-        <head/>
+</head>
 
     <body>
         

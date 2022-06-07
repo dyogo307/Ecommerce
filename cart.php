@@ -22,7 +22,7 @@ if (isset($_POST['update_cart'])) {
     <head>
         <title> Kaus Store </title>
         <?php include('./views/structure/head.php'); ?>
-    <head/>
+</head>
 
     <body>
         <?php include('./views/navbar.php'); ?>	
@@ -87,30 +87,7 @@ if (isset($_POST['update_cart'])) {
 			
         </div>
 		
-    </div>
-						<?php
-                        function updatecart()
-                        {
-                            global $con;
-                            $ip = getIp();
-
-                            if (isset($_POST['update_cart'])) {
-                                foreach ($_POST['remove'] as $remove_id) {
-                                    $delete_product = "delete from cart where p_id='$remove_id' AND ip_add='$ip'";
-                                    $run_delete     = mysqli_query($con, $delete_product);
-
-                                    if ($run_delete) {
-                                        echo "<script>window.open('cart.php','_self')</script>";
-                                    }
-                                }
-                            }
-                            if (isset($_POST['continue'])) {
-                                echo "<script>window.open('index.php','_self)</script>";
-                            }
-                            echo @$up_cart = updatecart();
-                        }
-
-                        ?>
+    </div>						
 		
 
         <?php include('./views/footer.php'); ?>

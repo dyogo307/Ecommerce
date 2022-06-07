@@ -12,13 +12,13 @@ include("functions/functions.php");
 		
 		<link rel="stylesheet" href="style.css" media="all"/>
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-	<head/>
+</head>
 
 <body>
 		<div class="main_wrapper">
 
 
-			<div class="logo" align="left">
+			<div class="logo" >
 				<h1> kaus </h1>
 			</div>
 
@@ -43,7 +43,7 @@ include("functions/functions.php");
 						<?php getCats(); ?>
 						
 				</ul>
-			<div/>
+					</div/>
 			
 			
 			<div class="content_wrapper">		
@@ -57,7 +57,7 @@ include("functions/functions.php");
 			<h1> Fala Connosco</h1>
 	</div>		
 	
-	<div class="contact-form" align="center">
+	<div class="contact-form">
 		<form id="contact-form" method="post" action="contact.php">
 		<input name="name" type="text" class="form-control" placeholder="Nome" required>
 		<br>

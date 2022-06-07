@@ -37,7 +37,7 @@ if(isset($_POST['register'])){
 	<head>
         <title>Kaus Store</title>
         <?php include('./views/structure/head.php'); ?>
-	<head/>
+</head>
 
 <body>
         <?php include('./views/navbar.php'); ?>

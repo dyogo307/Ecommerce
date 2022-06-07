@@ -12,30 +12,30 @@
 
 ?>
 	<form action="register.php?id<?php echo $id;?>" method="post" enctype="multipart/form-data">
-				<table align="center" width="500" style="margin-top:100px; color:black;">
+				<table  width="500" style="margin-top:100px; color:black;">
 
 					<tr>
 						<td><h2>Atualiza a tua Conta</h2></td>
 					</tr>
 					
 						<tr>
-						<td align="right">Email</td>
+						<td >Email</td>
 						<td><input type="text" name="email" value="<?php echo $email;?>" required/></td>
 						</tr>
 						
 						<tr>
-						<td align="right">Password</td>
-						<td><input type="password" name="pass" value="<?php echo $pass;?>" </td>
+						<td >Password</td>
+						<td><input type="password" name="pass" value="<?php echo $pass;?>"/> </td>
 						</tr>
 
 
 						<tr>
-						<td align="right">Nome</td>
-						<td><input type="text" name="name" value="<?php echo $name;?>" </td>
+						<td >Nome</td>
+						<td><input type="text" name="name" value="<?php echo $name;?>"/> </td>
 						</tr>
 																	
 						<tr>
-						<td align="right">Cidade</td>
+						<td >Cidade</td>
 						<td>
 						<select name="city">
 						<option> <?php echo $city;?></option>
@@ -48,7 +48,7 @@
 						</td>
 						
 						<tr>
-						<td align="right"> Contacto </td>
+						<td > Contacto </td>
 						<td><input type="text" name="contact" value="<?php echo $contact;?>" required/></td>
 						</tr>
 						
