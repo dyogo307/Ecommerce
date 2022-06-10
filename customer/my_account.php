@@ -10,7 +10,7 @@ include("functions/functions.php");
 		<title> Kaus Store </title>
 		
 		<link rel="stylesheet" href="styles.css" media="all"/>
-	<head/>
+</head>
 
 <body>
 		<div class="main_wrapper">
@@ -37,10 +37,10 @@ include("functions/functions.php");
 					?>	
 				</ul>
 				
-			<div/>
+					</div>
 		
 		
-			<div class
+
 			<div class="account">
 				<ul id ="account_management">
 						

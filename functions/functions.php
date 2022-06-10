@@ -22,7 +22,7 @@ function getIp()
 
 function getCart()
 {
-    return unserialize($_COOKIE['cart'] ?? []);
+    return isset($_COOKIE['cart']) ? unserialize($_COOKIE['cart']) : [];
 }
 
 function removeProductFromCart($productId)
@@ -54,10 +54,12 @@ function getCartProducts()
 
     $products = [];
 
-    while ($product = mysqli_fetch_array($result)) {
-        $product['quantity'] = $cart[$product['product_id']];
+    if ($result) {
+        while ($product = mysqli_fetch_array($result)) {
+            $product['quantity'] = $cart[$product['product_id']];
 
-        $products[] = $product;
+            $products[] = $product;
+        }
     }
 
     return $products;

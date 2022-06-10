@@ -13,7 +13,7 @@ include("functions/functions.php");
 		<link rel="stylesheet" href="styles/style.css" media="all"/>
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 		
-</head> 
+	<head/> 
 
 <body>
 		<div class="main_wrapper">
