@@ -38,6 +38,7 @@ if (isset($_POST['update_cart'])) {
                                         <th scope="col" class="fit-content"></th>
                                         <th scope="col">Nome</th>
                                         <th scope="col" class="fit-content">Quantidade</th>
+                                        <th scope="col" class="fit-content">Tamanho</th>
                                         <th scope="col" class="text-end">Preço</th>
                                         <th scope="col" class="fit-content"></th>
                                     </tr>
@@ -46,7 +47,6 @@ if (isset($_POST['update_cart'])) {
                                 <tbody>
                                     <?php
                                     $total = 0;
-
                                     foreach (getCartProducts() as $product) {
                                         $total += $product['quantity'] * $product['product_price'];
                                         ?>
@@ -61,6 +61,13 @@ if (isset($_POST['update_cart'])) {
                                                        name="quantities[<?= $product['product_id'] ?>]"
                                                        min="1" value="<?= $product['quantity'] ?>">
                                             </td>
+                                            <td>
+                                            <select class="form-select " >
+                                            <option value="S">S</option>
+                                            <option value="M">M</option>
+                                            <option value="L">L</option>
+                                            <option value="XL">XL</option>
+                                            </select></td>
                                             <td class="text-end"><?= $product['product_price'] ?></td>
                                             <td>
                                                 <a class="btn"

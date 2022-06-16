@@ -191,8 +191,8 @@ function getPro($highlight = '%')
                 <div class="mb-3 mb-md-4 mb-lg-5">
                     <h3>' . $pro_title . '</h3>
                     
-                    <div class="mb-3">
-                        <img class="img-thumbnail" src="admin_area/product_images/' . $pro_image . '">
+                    <div class="mb-3 ">
+                        <img class="img-thumbnail rounded " style=" height: 350px;" src="admin_area/product_images/' . $pro_image . '">
                     </div>
                     
                     <p class="lead">' . $pro_price . '€</p>
@@ -210,6 +210,34 @@ function getPro($highlight = '%')
     }
 }
 
+function getProEX($Exclusive = '%')
+{
+    global $con;
+
+    $categoryId = $_GET['cat'] ?? '%';
+
+    $get_pro = "select * from products where product_cat LIKE '$categoryId' AND Exclusive LIKE '$Exclusive'";
+
+    $run_pro = mysqli_query($con, $get_pro);
+
+    while ($row_proex = mysqli_fetch_array($run_pro)) {
+
+        $pro_id    = $row_proex['product_id'];
+        $pro_title = $row_proex['product_title'];
+        $pro_price = $row_proex['product_price'];
+        $pro_image = $row_proex['product_image'];
+
+
+        echo '
+            <div class="col-md-6 col-lg-4">
+               
+                    <a class="btn btn-secondary btn-xxl " href="index.php?add_cart=' . $pro_id . '">
+                        <i class="fas fa-cart-plus"></i> Adicionar ao carrinho
+                    </a>
+                </div>			
+            </div>';
+    }
+}
 ?>
 
 

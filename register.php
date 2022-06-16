@@ -5,6 +5,7 @@ include("includes/db.php");
 
 if(isset($_POST['register'])){
 	
+ 
 	$email= $_POST['email'];
 	$pass= sha1($_POST['pass']);
 	$name= $_POST['name'];
@@ -72,6 +73,7 @@ if(isset($_POST['register'])){
                 <div class="mb-3">
                     <label for="email" class="form-label">Email:</label>
                     <input type="email" class="form-control" name="email" id="email" required>
+
                 </div>
 				
 				 <div class="mb-3">
