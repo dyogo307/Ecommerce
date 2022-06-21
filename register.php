@@ -78,7 +78,7 @@ if(isset($_POST['register'])){
 				
 				 <div class="mb-3">
                     <label for="pass" class="form-label">Password:</label>
-                    <input type="pass" class="form-control" name="pass" id="pass" required>
+                    <input type="password" class="form-control" name="pass" id="pass" required>
                 </div>
 
                 <button type="submit" class="btn btn-primary" name="register">Cria a tua conta</button>
