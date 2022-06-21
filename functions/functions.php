@@ -192,7 +192,7 @@ function getPro($highlight = '%')
                     <h3>' . $pro_title . '</h3>
                     
                     <div class="mb-3 ">
-                        <img class="img-thumbnail rounded " style=" height: 350px;" src="admin_area/product_images/' . $pro_image . '">
+                        <img class="img-thumbnail rounded " style=" height: 350px; width: 350px;" src="admin_area/product_images/' . $pro_image . '">
                     </div>
                     
                     <p class="lead">' . $pro_price . '€</p>

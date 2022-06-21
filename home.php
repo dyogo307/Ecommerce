@@ -6,7 +6,7 @@ include("functions/functions.php");
 <!DOCTYPE html>
 <html lang="pt">
     <head>
-        <title>Kaus Store</title>
+        <title>DStore Store</title>
         <?php include('./views/structure/head.php'); ?>
     </head>
 
@@ -17,7 +17,7 @@ include("functions/functions.php");
         <div class="card bg-dark text-black">
             <img src="images/fundo.jpg" class="card-img" alt="...">
             <div class="card-img-overlay">
-                <h1 class="text-center" style="">KAUS</h1>
+                <h1 class="text-center" style="">DStore</h1>
             </div>
         </div>
 </div>

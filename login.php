@@ -5,7 +5,7 @@ include("functions/functions.php");
 session_start();
 
 if (isset($_SESSION['user'])) {
-    header('location: ./index.php');
+    header('location: ./home.php');
     exit;
 }
 
@@ -44,7 +44,7 @@ if (isset($_POST['login'])) {
     if ($user !== null) {
         $_SESSION['user'] = $user;
 
-        header('Location: ./index.php');
+        header('Location: ./home.php');
         exit;
     } else {
         header('Location: ' . $_SERVER['PHP_SELF'] . '?fail=no_user');
@@ -55,7 +55,7 @@ if (isset($_POST['login'])) {
 <!doctype html>
 <html lang="pt">
     <head>
-        <title>Kaus Store - Login</title>
+        <title>DStore Store - Login</title>
 
         <?php include('./views/structure/head.php'); ?>
 		<?php include('./views/navbar.php'); ?>

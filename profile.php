@@ -24,7 +24,7 @@ if (isset($_POST['update_profile'])) {
 <!DOCTYPE html>
 <html lang="pt">
     <head>
-        <title>Kaus Store</title>
+        <title>DStore Store</title>
         <?php include('./views/structure/head.php'); ?>
     </head>
 

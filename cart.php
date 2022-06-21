@@ -20,7 +20,7 @@ if (isset($_POST['update_cart'])) {
 <!DOCTYPE html>
 <html lang="pt">
     <head>
-        <title> Kaus Store </title>
+        <title> DStore Store </title>
         <?php include('./views/structure/head.php'); ?>
     </head>
 
@@ -67,6 +67,10 @@ if (isset($_POST['update_cart'])) {
                                             <option value="M">M</option>
                                             <option value="L">L</option>
                                             <option value="XL">XL</option>
+                                            <option value="XL">39</option>
+                                            <option value="XL">40</option>
+                                            <option value="XL">41</option>
+                                            <option value="XL">42</option>
                                             </select></td>
                                             <td class="text-end"><?= $product['product_price'] ?></td>
                                             <td>

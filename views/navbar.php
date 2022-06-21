@@ -3,7 +3,7 @@
     <!-- Container wrapper -->
     <div class="container">
         <!-- Navbar brand -->
-        <a class="navbar-brand" href="home.php">Kaus</a>
+        <a class="navbar-brand" href="home.php">DStore</a>
 
         <!-- Toggle button -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"

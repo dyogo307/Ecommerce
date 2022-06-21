@@ -8,7 +8,7 @@ include("functions/functions.php");
 
 <html> 
 	<head>
-		<title> Kaus Store </title>
+		<title> DStore Store </title>
 		
 		<link rel="stylesheet" href="styles/style.css" media="all"/>
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
@@ -20,7 +20,7 @@ include("functions/functions.php");
 
 
 			<div class="logo">
-				<h1> kaus </h1>
+				<h1> DStore </h1>
 			</div>
 
 			<div class="menubar">
